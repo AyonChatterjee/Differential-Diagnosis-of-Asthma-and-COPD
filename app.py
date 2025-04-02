@@ -4,6 +4,7 @@ import librosa
 import tensorflow as tf
 from tensorflow.keras.models import load_model
 from sklearn.preprocessing import StandardScaler
+import time
 
 # Load trained model
 model = load_model("audio_classifier.h5")
@@ -16,31 +17,40 @@ def extract_features(audio_file):
         feature = np.mean(mfcc.T, axis=0)
         return feature
     except Exception as e:
-        st.error(f"Error in feature extraction: {e}")
+        st.error(f"⚠️ Error in feature extraction: {e}")
         return None
 
-# Streamlit UI
+# Streamlit UI Customization
+st.set_page_config(page_title="Audio Disease Classifier", page_icon="🎤", layout="centered")
 st.title("🎤 Audio Disease Classification (Asthma vs. COPD)")
+st.markdown("### Upload an audio file to predict the condition")
 
-uploaded_file = st.file_uploader("Upload a .wav audio file", type=["wav"])
+# Sidebar customization
+st.sidebar.header("ℹ️ Instructions")
+st.sidebar.info("1. Upload a WAV audio file.\n2. The model will analyze and classify the condition.\n3. You will receive a prediction with confidence score.")
+
+# File uploader
+uploaded_file = st.file_uploader("Upload a .wav audio file", type=["wav"], help="Only .wav files are supported")
 
 if uploaded_file is not None:
     st.audio(uploaded_file, format="audio/wav")
+    st.markdown("⌛ **Processing audio...**")
     
-    # Extract features
-    features = extract_features(uploaded_file)
+    with st.spinner("Extracting features..."):
+        time.sleep(2)
+        features = extract_features(uploaded_file)
     
     if features is not None:
-        # Standardize features
         scaler = StandardScaler()
-        features_scaled = scaler.fit_transform([features])  # Reshape for model
-        
-        # Reshape for CNN input
+        features_scaled = scaler.fit_transform([features])
         features_scaled = np.expand_dims(features_scaled, axis=-1)
         
-        # Prediction
-        prediction = model.predict(features_scaled)[0][0]
-        result = "Asthma" if prediction > 0.5 else "COPD"
-        
-        st.success(f"🔍 Predicted Condition: **{result}**")
-
+        with st.spinner("Analyzing with AI model..."):
+            time.sleep(2)
+            prediction = model.predict(features_scaled)[0][0]
+            confidence = round(float(prediction) * 100, 2)
+            result = "Asthma" if prediction > 0.5 else "COPD"
+            
+        st.success(f"✅ **Predicted Condition: {result}**")
+        st.progress(int(confidence))
+        st.info(f"🧠 Confidence Score: **{confidence}%**")
