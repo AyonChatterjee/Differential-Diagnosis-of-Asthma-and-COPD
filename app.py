@@ -10,7 +10,7 @@ from streamlit_lottie import st_lottie
 import requests
 
 # Load trained model
-model = load_model("CNN_BiGRU_LungSound.h5")
+model = load_model("audio_classifier.h5")
 
 # Function to extract MFCC features from uploaded audio
 def extract_features(audio_file):
@@ -56,7 +56,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Banner with Lung Image
-st.image("https://www.cdc.gov/copd/images/COPD_Banner_1200x675.jpg", use_column_width=True)
+st.image(r"C:\Users\chatt\Desktop\Project\Lung_img.jpg", use_column_width=True)
 
 st.markdown("<div class='title-container'>🫁 Lung Disease Detection (Asthma vs. COPD)</div>", unsafe_allow_html=True)
 st.markdown("### Upload an audio file to predict the condition")
