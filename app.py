@@ -10,7 +10,7 @@ from streamlit_lottie import st_lottie
 import requests
 
 # Load trained model
-model = load_model("audio_classifier.h5")
+model = load_model("CNN_BiGRU_LungSound.h5")
 
 # Function to extract MFCC features from uploaded audio
 def extract_features(audio_file):
