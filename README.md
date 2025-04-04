@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project aims to develop a machine learning model capable of differentiating between asthma and Chronic Obstructive Pulmonary Disease (COPD) by leveraging the BRACETS dataset. The BRACETS dataset provides a comprehensive collection of respiratory sound recordings and electrical impedance tomography (EIT) data, facilitating advanced research in respiratory diagnostics.
+This project aims to develop a machine learning model capable of differentiating between asthma and Chronic Obstructive Pulmonary Disease (COPD). The above datasets provides a comprehensive collection of respiratory sound recordings , facilitating advanced research in respiratory diagnostics.
 
 ## Background
 
