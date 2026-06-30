@@ -166,10 +166,60 @@ The model is evaluated using:
 
 ---
 
+## 📁 Project Structure
+
+```
+Asthma-COPD-Classification/
+│
+├── datasets/
+│
+├── preprocessing/
+│   ├── resample.py
+│   ├── denoise.py
+│   ├── segmentation.py
+│   ├── mfcc.py
+│   └── preprocessing.py
+│
+├── augmentation/
+│
+├── models/
+│   ├── cnn.py
+│   ├── bigru.py
+│   ├── attention.py
+│   └── model.py
+│
+├── training/
+│   ├── train.py
+│   └── trainer.py
+│
+├── evaluation/
+│   ├── metrics.py
+│   └── evaluate.py
+│
+├── inference/
+│   └── predict.py
+│
+├── notebooks/
+│
+├── saved_models/
+│
+├── results/
+│
+├── requirements.txt
+│
+├── README.md
+│
+└── LICENSE
+```
+
+---
+
 ## 🚀 Installation
 
 ```bash
-git clone https://github.com/AyonChatterjee/Differential-Diagnosis-of-COPD-and-Asthma-.git
+git clone https://github.com/yourusername/Asthma-COPD-Classification.git
+
+cd Asthma-COPD-Classification
 
 pip install -r requirements.txt
 ```
@@ -214,3 +264,9 @@ python predict.py --audio sample.wav
 - Streamlit Web Application
 - Docker Containerization
 - Real-time Respiratory Disease Detection
+
+---
+
+## 📜 License
+
+This project is developed for educational and research purposes.
